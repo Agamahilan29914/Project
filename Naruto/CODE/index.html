@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naruto — Konoha</title>
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Righteous&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header light">
+    <div class="container header-inner">
+      <a class="logo" href="#" aria-label="Konoha home">
+        <img src="../PICTURES/Naruto-Title.jpg" alt="Naruto title" />
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#team">Team 7</a></li>
+          <li><a href="#boruto">Boruto</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <a class="btn outline" href="#about">Learn</a>
+        <a class="btn primary" href="#team">Explore</a>
+      </div>
+
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu" hidden>
+      <div class="mobile-inner">
+        <button class="close-mobile" aria-label="Close menu">✕</button>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#team">Team 7</a></li>
+          <li><a href="#boruto">Boruto</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" role="region" aria-label="Hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Welcome to the Village of the Leaf</h1>
+          <p class="lead">Explore the stories of Team 7 and the next generation — a world of growth, honor and unforgettable characters.</p>
+          <div class="hero-cta">
+            <a class="btn primary large" href="#team">Meet Team 7</a>
+            <a class="btn outline large" href="#about">Read the Story</a>
+          </div>
+        </div>
+
+        <div class="hero-media" aria-hidden="true">
+          <img src="../PICTURES/Naruto.jpg" alt="Naruto standing" loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about container">
+      <h2>About Konoha</h2>
+      <p>
+        The main characters of Naruto are the members of Team 7: Naruto, Sasuke, and Sakura. After graduating from the Ninja Academy, they were placed in the same team under Kakashi.
+        Naruto is a cheerful and determined boy who grows into a powerful ninja; Sasuke seeks revenge after a tragic past; Sakura becomes a skilled medical ninja and a strong ally.
+        The story highlights teamwork, growth, and perseverance.
+      </p>
+    </section>
+
+    <section id="team" class="team container">
+      <h2>Team 7</h2>
+      <div class="grid">
+        <article class="card">
+          <img src="../PICTURES/Naruto.jpg" alt="Naruto Uzumaki portrait" loading="lazy"/>
+          <h3>Naruto Uzumaki</h3>
+          <p class="muted">The spirited protagonist known for his determination and growth.</p>
+        </article>
+
+        <article class="card">
+          <img src="../PICTURES/Sasuke.jpg" alt="Sasuke Uchiha portrait" loading="lazy"/>
+          <h3>Sasuke Uchiha</h3>
+          <p class="muted">A talented ninja driven by a quest for vengeance and power.</p>
+        </article>
+
+        <article class="card">
+          <img src="../PICTURES/Sakura.jpg" alt="Sakura Haruno portrait" loading="lazy"/>
+          <h3>Sakura Haruno</h3>
+          <p class="muted">Intelligent and determined; later becomes a skilled medical ninja.</p>
+        </article>
+        
+      </div>
+    </section>
+
+    <section id="boruto" class="container boruto">
+      <h2>Boruto — The Next Generation</h2>
+      <div class="boruto-grid">
+        <p>
+          Boruto Uzumaki is the son of Naruto and Hinata. A talented and occasionally sarcastic young ninja, he represents the next generation of Konoha.
+          Alongside teammates Sarada and Mitsuki, he forms Team Konohamaru as they learn and grow.
+        </p>
+        <article class="card boruto-card">
+          <img src="../PICTURES/BORUTO.jpg" alt="Boruto Uzumaki portrait" loading="lazy" />
+          <h3>Boruto Uzumaki</h3>
+          <p class="muted">Son of Naruto; a talented young ninja representing the next generation.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Konoha — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // set footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu behavior (hamburger + overlay) with focus trap and reliable close
+    (function(){
+      const hamburger = document.querySelector('.hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const closeBtn = document.querySelector('.close-mobile');
+      if(!hamburger || !mobileMenu) return;
+
+      let lastFocused = null;
+      let keyHandler = null;
+
+      function setAria(open){
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      }
+
+      function openMenu(){
+        lastFocused = document.activeElement;
+        mobileMenu.hidden = false;
+        setAria(true);
+        hamburger.classList.add('open');
+        document.body.style.overflow = 'hidden';
+
+        // focus first focusable element inside menu
+        const first = mobileMenu.querySelector('a, button');
+        if(first) first.focus();
+
+        // add focus trap
+        keyHandler = function(e){
+          if(e.key === 'Escape'){
+            closeMenu();
+            return;
+          }
+          if(e.key !== 'Tab') return;
+          const focusable = Array.from(mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')).filter(el => !el.disabled && el.offsetParent !== null);
+          if(focusable.length === 0) return;
+          const firstEl = focusable[0];
+          const lastEl = focusable[focusable.length -1];
+          if(e.shiftKey){
+            if(document.activeElement === firstEl){
+              e.preventDefault();
+              lastEl.focus();
+            }
+          } else {
+            if(document.activeElement === lastEl){
+              e.preventDefault();
+              firstEl.focus();
+            }
+          }
+        };
+        document.addEventListener('keydown', keyHandler);
+      }
+
+      function closeMenu(){
+        mobileMenu.hidden = true;
+        setAria(false);
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+        if(keyHandler) document.removeEventListener('keydown', keyHandler);
+        keyHandler = null;
+        if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+
+      // toggle
+      hamburger.addEventListener('click', () => {
+        if (mobileMenu.hidden) openMenu(); else closeMenu();
+      });
+
+      // close buttons and link clicks
+      if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+      // close when clicking outside inner panel
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>

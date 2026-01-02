@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+<body>
+    <div class="one">
+        <div class="two">
+            <h1>Stopwatch</h1>
+            <p><span id="sec">00</span>: <span id="milsec">00</span></p>
+            <button id="st" onclick="time()">Start</button>
+            <button id="re">Reset</button>
+            <button id="sp">Stop</button>
+        </div>
+    </div>
+    <style>
+        *{
+            padding: 0%;
+            margin: 0%;
+            font-family: sans-serif;
+        }
+        .one{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        p{
+            text-align: center;
+            margin: 10px;
+            font-size: 25px;
+        }
+        button{
+            width: 70px;
+            padding: 13px;
+            margin: 10px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+    
+        }
+        h1{
+            text-align: center;
+        }
+        body{
+            background:linear-gradient(rgb(244, 55, 7),rgb(255, 255, 255),rgb(21, 255, 0));
+        }
+    </style>
+
+    <script>
+        const sec = document.getElementById("sec");
+        var milsec = document.getElementById("milsec");
+        const start = document.getElementById("st");
+        const resrt = document.getElementById("re");
+        const stop = document.getElementById("sp");
+        var milsecs = 0;
+        var secs=0;
+
+        function timer(){
+            milsecs++;
+            if(milsecs<9){
+                milsec.innerHTML="0"+milsecs;
+            }
+            if(milsecs>9){
+                milsec.textContent=milsecs;
+            }
+            if(milsecs>99){
+                secs++;
+                sec.innerHTML="0"+secs;
+                milsecs=0;
+                milsec.innerHTML="0"+0;
+            
+            }
+            if (secs>9){
+                sec.innerHTML=secs;
+
+            }  
+         } 
+         start.addEventListener("click",()=>{
+            time=setInterval(timer,10);
+         })
+         stop.addEventListener("click",()=>{
+            clearInterval(time);
+         })
+         resrt.addEventListener("click",()=>{
+            location.reload();
+        
+         })
+         </script>
+    
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Explore New Things-Login</title>
+  <link rel="icon" href="ent new.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f0f2f5;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    /* Shake animation */
+    .shake {
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-10px); }
+      80% { transform: translateX(10px); }
+      100% { transform: translateX(0); }
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 12px;
+      font-size: 16px;
+      width: 300px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      display: block;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #1877F2;
+      outline: none;
+    }
+
+    #login-btn {
+      display: block;
+      padding: 12px;
+      font-size: 16px;
+      width: 320px;
+      background-color: #1877F2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+                  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      transition: 0.3s;
+    }
+
+    #login-btn:hover {
+      background-color: #145dbf;
+    }
+
+    .forgot-pass {
+      text-decoration: none;
+      cursor: pointer;
+      color: white;
+    }
+
+
+    small {
+      display: none;
+      color: red;
+      text-align: left;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .forgot{
+      background-color: orangered;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 6px;
+      display: inline-block;
+      margin:  10px;
+    }
+
+
+
+  </style>
+</head>
+<body>
+
+<h1 style="color: green;">Explore New Things</h1>
+<p>Please login to unlock Explore New Things</p>
+
+<div class="login-container" id="loginContainer">
+  <input type="text" placeholder="Username" id="username" autocomplete="off" type="text">
+  <small id="error_1">Error message</small>
+
+  <input type="password" placeholder="Password" id="password">
+  <small id="error_2">Error message</small>
+
+  <button id="login-btn" type="submit" onclick="inner()">Log In</button>
+  <div class="forgot">
+  <a class="forgot-pass" href="forgot password.html">Forgotten password?</a>
+  </div>
+</div>
+
+<script>
+
+function inner(){ 3
+
+  const userInput = document.getElementById("username");
+  const passInput = document.getElementById("password");
+  const error1 = document.getElementById("error_1");
+  const error2 = document.getElementById("error_2");
+  const loginContainer = document.getElementById("loginContainer");
+
+  const d_user_name = userInput.value.trim();
+  const d_pass_word = "password";
+
+  // Reset errors and borders
+  error1.style.display = "none";
+  error2.style.display = "none";
+  userInput.style.borderColor = "#ccc";
+  passInput.style.borderColor = "#ccc";
+
+  let hasError = false;
+
+  // Check username
+  if (userInput.value.trim() === "") {
+    error1.textContent = "Username should not be empty";
+    error1.style.display = "block";
+    userInput.style.borderColor = "red";
+    hasError = true;
+  }
+
+  // Check password
+  if (passInput.value.trim() === "") {
+    error2.textContent = "Password should not be empty";
+    error2.style.display = "block";
+    passInput.style.borderColor = "red";
+    hasError = true;
+  }
+
+  if (hasError) {
+    // Re-trigger shake animation
+    loginContainer.classList.remove("shake");      // Remove class
+    void loginContainer.offsetWidth;               // Force reflow
+    loginContainer.classList.add("shake");         // Add class again
+    return;
+  }
+
+  // Check credentials (ONLY password)
+if (passInput.value === d_pass_word) {
+  window.location.href = "entinners.html";
+} else {
+  error2.textContent = "Incorrect password";
+  error2.style.display = "block";
+  passInput.style.borderColor = "red";
+  userInput.style.borderColor = "red";
+  error2.style.textAlign = "center";
+
+  // Shake animation
+  loginContainer.classList.remove("shake");
+  void loginContainer.offsetWidth;
+  loginContainer.classList.add("shake");
+}
+}
+</script>
+
+</body>
+</html>

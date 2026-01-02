@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            font-weight: bold;
+        }
+        body{
+            background-color: red;
+        }
+        .ten{
+            position: absolute;
+            left: 30%;
+            top: 25%;
+            display: flex;
+            display: inline;
+            border: 20px solid wheat;
+            width: 600px;
+            height: 350px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            display: block;
+            background-color: black;
+            border-radius: 50px;
+        }
+        h1{
+           margin-top: 30px;
+            margin-left: 55px;
+            margin-bottom: 20px;
+            display: flex;
+            size: 40px;
+            color: aliceblue;
+          }
+          #one{
+            width: 200px;
+            height: 45px;
+            display: block;
+            margin-left:200px;
+            border: 7px solid wheat;
+            border-radius: 30px;
+          }
+          button{
+            width: 70px;
+            height: 40px;
+            margin-left: 275px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: rgb(251, 111, 4);
+            color: black;
+            border-radius: 30px;
+            border: none;
+          }
+          p{
+            color:rgb(255, 255, 255);
+            font-size: 25px;
+            padding: 3px;
+            margin-left: 270px;
+          
+          }
+          #one{
+            background-color: rgb(135, 169, 194);
+            font-size: 50px;
+            text-align: center;
+          }
+    </style>
+    <div class="ten">
+    <h1>GUESS THE NUMBER 1 TO 10</h1>
+   <input type="text" id="one">
+   <button id="two" onclick="fun()">START</button>
+   <p id="three">RESULT</p>
+   <p id="four">SCORE:10</p>
+   </div>
+   <script>
+    var a=document.getElementById("one")
+    var b=document.getElementById("three")
+    var f=document.getElementById("four")
+    var c=Math.floor(Math.random()*10+1)
+    var e=10
+    console.log(c)
+    function fun(){
+        var a1=a.value
+        if(a1==c){
+        b.textContent="WIN"
+        alert("conguralation")
+
+    }
+    else{
+        e=e-1
+        f.textContent="SCORE:"+e
+        console.log("loos")
+        b.textContent="LOOS"}
+}
+   </script>
+</body>
+</html>

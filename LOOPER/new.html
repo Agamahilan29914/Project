@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Looper</title>
+</head>
+<body>
+    <div class="one">
+        <div class="two">
+           <div class="three">
+             <h1>The Looper</h1>
+             <label for="text">Enter the text</label>
+              <input type="text" id="text"  placeholder="Enter the text" required>
+              <label for="count">How many times</label>
+              <input type="text" id="count" placeholder="How many times" required>
+              <button onclick="outpu()" >Start</button>
+              <p id="output"></p>
+            </div>
+          </div>
+    </div>
+    <style>
+        #text{
+            margin-top: 20px !important;
+            margin-bottom: 20px !important;
+        }
+        h1{
+            text-align: center;
+            letter-spacing: 10px;
+            margin-bottom: 30px;
+            color: rgb(0, 0, 0);
+            margin-top: 30px;
+        }
+    .two{
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    input{
+        display: block;
+        padding: 15px;
+        margin: 10px;
+        width: 400px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .three{
+        background-color: rgb(255, 255, 255);
+        padding: 30px;
+        box-shadow: 20px 20px 10px;
+        border-radius: 20px;
+    }
+    button{
+        width: 150px;
+        padding: 10px;
+        margin-left: 140px;
+        margin-top: 20px;
+        background-color: rgb(0, 0, 255);
+        color: aliceblue;
+        border: none;
+        font-size: 20px;
+        border-radius: 20px;
+    }
+    label{
+        margin-left: 10px;
+        font-size: 25px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    *{
+        margin: 0%;
+        padding: 0%;
+        font-weight: bold;
+    }
+    .one{
+        background-color: rgba(0, 0, 255, 0.712);
+    }
+    ::placeholder{
+        font-size: 20px;
+    }
+
+    </style>
+    <script>
+        var a = document.getElementById("text")
+        var b = document.getElementById("count")
+        var p = document.getElementById("output")
+        function outpu(){
+            for(i=1;i<=b.value;i++){
+                document.write(a.value+"<br>"+"<br>")          
+            }
+        }
+    </script>
+</body>
+</html>
