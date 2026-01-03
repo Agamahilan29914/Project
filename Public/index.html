@@ -98,23 +98,35 @@
       margin:  10px;
     }
 
+    .ent_link {
+      display: block;
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      background-color: green;
+      font-weight: bold;
+    }
+
 
 
   </style>
 </head>
 <body>
 
-<h1 style="color: green;">Explore New Things</h1>
-<p>Please login to unlock Explore New Things</p>
+<h1 style="color: #145dbf;">SkyNotes</h1>
+<p>Please login to unlock SkyNotes</p>
 
 <div class="login-container" id="loginContainer">
-  <input type="text" placeholder="Username" id="username" autocomplete="off" type="text">
+  <input type="text" placeholder="Username" id="username" autocomplete="off" >
   <small id="error_1">Error message</small>
 
   <input type="password" placeholder="Password" id="password">
   <small id="error_2">Error message</small>
 
   <button id="login-btn" type="submit" onclick="inner()">Log In</button>
+      <a href="../ENT/ent.html" class="ent_link">Explore New Things</a>
   <div class="forgot">
   <a class="forgot-pass" href="forgot password.html">Show password</a>
   </div>
@@ -167,7 +179,7 @@ function inner(){
 
   // Check credentials (ONLY password)
 if (passInput.value === d_pass_word) {
-  window.location.href = "entinners.html";
+  window.location.href = "inners.html";
 } else {
   error2.textContent = "Incorrect password";
   error2.style.display = "block";
