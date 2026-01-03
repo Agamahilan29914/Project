@@ -9,55 +9,84 @@
     <div class="one">
         <div class="two">
             <h1>Stopwatch</h1>
-            <p><span id="sec">00</span>: <span id="milsec">00</span></p>
-            <button id="st" onclick="time()">Start</button>
-            <button id="re">Reset</button>
-            <button id="sp">Stop</button>
+            <p class="display"><span id="sec">00</span>: <span id="milsec">00</span></p>
+            <div class="controls">
+                <button id="toggle" type="button" aria-pressed="false">Start</button>
+                <button id="re" type="button">Reset</button>
+                <button id="sp" type="button">Stop</button>
+            </div>
         </div>
     </div>
     <style>
         *{
-            padding: 0%;
-            margin: 0%;
-            font-family: sans-serif;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
         .one{
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 2rem;
+            background: linear-gradient(180deg, rgb(244,55,7), rgb(255,255,255), rgb(21,255,0));
         }
-        p{
+        .two{
+            width: min(92%, 420px);
+            background: rgba(255,255,255,0.9);
+            padding: 1.5rem;
+            border-radius: 14px;
             text-align: center;
-            margin: 10px;
-            font-size: 25px;
-        }
-        button{
-            width: 70px;
-            padding: 13px;
-            margin: 10px;
-            background: black;
-            color: white;
-            border: none;
-            border-radius: 20px;
-    
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
         }
         h1{
-            text-align: center;
+            font-size: clamp(1.25rem, 3.2vw, 2rem);
+            margin-bottom: .5rem;
         }
-        body{
-            background:linear-gradient(rgb(244, 55, 7),rgb(255, 255, 255),rgb(21, 255, 0));
+        .display{
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin: 10px 0 16px;
+            font-weight: 600;
         }
-    </style>
+        .controls{
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .controls button{
+            flex: 1 1 120px;
+            min-width: 90px;
+            padding: 12px 14px;
+            margin: 4px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .controls button:disabled{
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+        @media (max-width: 420px){
+            .controls button{
+                flex-basis: 100%;
+            }
+        }
+    </style> 
 
     <script>
         const sec = document.getElementById("sec");
         var milsec = document.getElementById("milsec");
-        const start = document.getElementById("st");
+        const toggle = document.getElementById("toggle");
         const resrt = document.getElementById("re");
         const stop = document.getElementById("sp");
         var milsecs = 0;
         var secs=0;
+        var time; // interval handle
 
         function timer(){
             milsecs++;
@@ -79,12 +108,32 @@
 
             }  
          } 
-         start.addEventListener("click",()=>{
-            time=setInterval(timer,10);
+
+         // Start / Pause toggle
+         toggle.addEventListener("click",()=>{
+            if (!time){
+                // start or resume
+                time = setInterval(timer,10);
+                toggle.textContent = 'Pause';
+                toggle.setAttribute('aria-pressed','true');
+            } else {
+                // pause
+                clearInterval(time);
+                time = undefined;
+                toggle.textContent = 'Start';
+                toggle.setAttribute('aria-pressed','false');
+            }
          })
+
+         // Stop clears and returns to initial state
          stop.addEventListener("click",()=>{
-            clearInterval(time);
+            if (time) clearInterval(time);
+            time = undefined;
+            toggle.textContent = 'Start';
+            toggle.setAttribute('aria-pressed','false');
          })
+
+         // Reset reloads page (keeps behavior simple)
          resrt.addEventListener("click",()=>{
             location.reload();
         
