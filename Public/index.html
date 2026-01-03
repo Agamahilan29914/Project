@@ -126,7 +126,7 @@
   <small id="error_2">Error message</small>
 
   <button id="login-btn" type="submit" onclick="inner()">Log In</button>
-      <a href="../ENT/ent.html" class="ent_link">Explore New Things</a>
+      <a href="../public/ENT/ent.html" class="ent_link">Explore New Things</a>
   <div class="forgot">
   <a class="forgot-pass" href="forgot password.html">Show password</a>
   </div>
@@ -179,7 +179,7 @@ function inner(){
 
   // Check credentials (ONLY password)
 if (passInput.value === d_pass_word) {
-  window.location.href = "inners.html";
+  window.location.href = "../ENT/entinners.html";
 } else {
   error2.textContent = "Incorrect password";
   error2.style.display = "block";
